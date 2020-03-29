@@ -1,0 +1,41 @@
+{
+  "name": "@worldbrain/memex-storex-hub",
+  "version": "0.1.0",
+  "license": "MIT",
+  "description": "Make your life easier integrating with Memex through Storex Hub",
+  "main": "lib/index.js",
+  "typings": "lib/index",
+  "scripts": {
+    "prepare": "tsc",
+    "prepare:watch": "npm run prepare -- -w",
+    "generate-types": "ts-node tools/generate-types.ts",
+    "test": "mocha --require ts-node/register \"ts/**/*.test.ts\"",
+    "test:watch": "mocha -r source-map-support/register -r ts-node/register \"ts/**/*.test.ts\" --watch --watch-extensions ts"
+  },
+  "keywords": [
+    "storage",
+    "graph",
+    "database",
+    "typescript"
+  ],
+  "author": "Vincent den Boer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WorldBrain/memex-storex-hub.git"
+  },
+  "dependencies": {
+    "@worldbrain/storex": "^0.4.1",
+    "@worldbrain/storex-backend-dexie": "^0.3.1",
+    "@worldbrain/storex-hub": "^0.3.0",
+    "@worldbrain/memex-storage": "^0.1.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.0.6",
+    "@types/events": "^1.2.0",
+    "@types/mocha": "^2.2.44",
+    "@types/node": "^10.12.11",
+    "@worldbrain/storex-typescript-generation": "^0.2.0",
+    "typescript": "^3.8.3",
+    "ts-node": "^8.8.1"
+  }
+}
