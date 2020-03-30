@@ -2,7 +2,7 @@ const pluralize = require('pluralize')
 import { StorageRegistry, CollectionDefinitionMap } from '@worldbrain/storex'
 import { generateTypescriptInterfaces } from '@worldbrain/storex-typescript-generation'
 import { writeFileSync } from 'fs'
-import { MEMEX_COLLECTION_DEFINITION_MAPS } from '../ts/testing/constants'
+import { MEMEX_COLLECTION_DEFINITION_MAPS } from '../testing/constants'
 
 function singularCollectionDefinitions(collectionDefinitions: CollectionDefinitionMap) {
     const singular: CollectionDefinitionMap = {}
@@ -19,7 +19,7 @@ function renameCollection(collectionDefinitions: CollectionDefinitionMap, source
     }
 }
 
-async function main() {
+export async function main() {
     const registry = new StorageRegistry()
     const definitions: CollectionDefinitionMap[] = MEMEX_COLLECTION_DEFINITION_MAPS
     for (const definitionMap of definitions) {

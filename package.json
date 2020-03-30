@@ -6,9 +6,9 @@
   "main": "lib/index.js",
   "typings": "lib/index",
   "scripts": {
-    "prepare": "tsc",
+    "prepare": "npm run generate-types && tsc",
     "prepare:watch": "npm run prepare -- -w",
-    "generate-types": "ts-node tools/generate-types.ts",
+    "generate-types": "ts-node ts/tools/generate-types.ts",
     "test": "mocha --require ts-node/register \"ts/**/*.test.ts\"",
     "test:watch": "mocha -r source-map-support/register -r ts-node/register \"ts/**/*.test.ts\" --watch --watch-extensions ts"
   },
