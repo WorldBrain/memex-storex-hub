@@ -1,6 +1,6 @@
 {
   "name": "@worldbrain/memex-storex-hub",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "description": "Make your life easier integrating with Memex through Storex Hub",
   "main": "lib/index.js",
