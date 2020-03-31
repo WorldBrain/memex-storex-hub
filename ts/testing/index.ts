@@ -2,8 +2,10 @@ import StorageManager, { StorageRegistry, CollectionDefinition, CollectionDefini
 import { DexieStorageBackend } from '@worldbrain/storex-backend-dexie'
 import inMemory from '@worldbrain/storex-backend-dexie/lib/in-memory'
 import { ChangeWatchMiddleware } from '@worldbrain/storex-middleware-change-watcher'
-import { MultiApiOptions, TestSession } from "@worldbrain/storex-hub/lib/tests/api/index.tests";
+import { TestSession } from "@worldbrain/storex-hub/lib/tests/api/index.tests";
 import * as api from "@worldbrain/storex-hub/lib/public-api";
+import memexStemmer from '@worldbrain/memex-stemmer'
+import { StorexHubCallbacks_v0 } from '@worldbrain/storex-hub/lib/public-api';
 import { MEMEX_COLLECTION_DEFINITION_MAPS } from './constants';
 
 export class MemexTestingApp {
@@ -12,12 +14,12 @@ export class MemexTestingApp {
     collectionsToWatch = new Set<string>()
     subscriptionCount = 0
 
-    constructor(private createSession: (options: MultiApiOptions) => Promise<TestSession>) {
+    constructor(private createSession: (options: { callbacks: StorexHubCallbacks_v0 }) => Promise<TestSession>) {
     }
 
     async setup() {
         const idbImplementation = inMemory()
-        const storageBackend = new DexieStorageBackend({ dbName: 'test', idbImplementation })
+        const storageBackend = new DexieStorageBackend({ dbName: 'test', idbImplementation, stemmer: memexStemmer })
         this.storageManager = new StorageManager({ backend: storageBackend })
         for (const colllectionDefinitions of MEMEX_COLLECTION_DEFINITION_MAPS) {
             this.storageManager.registry.registerCollections(colllectionDefinitions)
@@ -48,7 +50,6 @@ export class MemexTestingApp {
 
         let memexSubscriptions: { [id: string]: api.RemoteStorageChangeSubscriptionRequest_v0 } = {}
         this.session = await this.createSession({
-            type: 'websocket',
             callbacks: {
                 handleRemoteOperation: async ({ operation }) => {
                     const result = await this.storageManager!.operation(operation[0], ...operation.slice(1))
