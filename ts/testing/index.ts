@@ -35,7 +35,8 @@ export class MemexTestingApp {
                             event: {
                                 type: 'storage-change',
                                 info: info.info,
-                            }
+                            },
+                            synchronous: true
                         })
                     }
                 }

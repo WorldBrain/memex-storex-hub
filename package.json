@@ -26,7 +26,7 @@
   "dependencies": {
     "@worldbrain/storex": "^0.4.1",
     "@worldbrain/storex-backend-dexie": "^0.3.1",
-    "@worldbrain/storex-hub": "^0.3.0",
+    "@worldbrain/storex-hub": "^0.3.1",
     "@worldbrain/storex-middleware-change-watcher": "^0.1.1",
     "@worldbrain/memex-stemmer": "^0.1.0",
     "@worldbrain/memex-storage": "^0.1.0",
