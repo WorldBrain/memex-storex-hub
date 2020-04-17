@@ -41,6 +41,7 @@
     "@types/events": "^1.2.0",
     "@types/mocha": "^2.2.44",
     "@types/node": "^10.12.11",
+    "@types/socket.io-client": "1.4.32",
     "@worldbrain/storex-typescript-generation": "^0.2.0",
     "mocha": "7.1.1",
     "typescript": "^3.8.3",
